@@ -1,0 +1,5 @@
+define command {
+    command_name    {{ check_nrpe_cmd }}_1arg
+    command_line    /usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -p {{ client_port }} -c $ARG1$
+}
+

@@ -1,0 +1,11 @@
+---
+# configure nrpe on the client
+
+- name: Install nrpe on client
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - nagios-nrpe-server
+
+- name: Copy config on client
+  template: src=nrpe.cfg.j2 dest=/etc/nagios/nrpe.cfg owner=root mode=0755
+  notify: Restart nrpe service

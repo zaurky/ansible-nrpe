@@ -1,0 +1,12 @@
+---
+# configure nrpe on the server
+
+- name: Add config on server
+  template: src=nrpe-hosts.cfg.j2 dest=/etc/nagios/conf.d/{{ client_name_short }}-hosts.cfg owner=root mode=0755
+
+- name: New config section on server
+  template: src=nrpe-server.cfg.j2 dest=/tmp/nrpe-server.cfg owner=root mode=0755
+
+- name: Concat section on server
+  command: cat /tmp/nrpe-server.cfg >> /etc/nagios-plugins/config/check_nrpe.cfg
+  notify: Restart nagios3 service

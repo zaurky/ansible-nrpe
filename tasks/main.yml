@@ -1,0 +1,10 @@
+---
+# configure nrpe
+
+- include: common.yml
+
+- include: server.yml
+  when: install_server
+
+- include: client.yml
+  when: install_client
