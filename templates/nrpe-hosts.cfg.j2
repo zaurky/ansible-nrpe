@@ -32,3 +32,10 @@ define service {
     service_description     Current Load
     check_command           {{ check_nrpe_cmd }}_1arg!check_load
 }
+
+define service {
+    use                     generic-service
+    host_name               {{ client_name_short }}
+    service_description     Disk Space In /home
+    check_command           {{ check_nrpe_cmd }}_1arg!check_home
+}
